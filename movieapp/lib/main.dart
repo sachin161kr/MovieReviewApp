@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'details.dart';
 
 void main() {
   runApp(MaterialApp(
     home: MyApp(),
+    theme: ThemeData(
+      brightness: Brightness.dark,
+      primaryColor: Colors.pink,
+      accentColor: Colors.white,
+      scaffoldBackgroundColor: Colors.black,
+    ),
   ));
 }
 
@@ -25,11 +32,21 @@ class _MyAppState extends State<MyApp> {
     super.dispose();
   }
 
+  sendtonext() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => Details(
+                text: myController.text,
+              )),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Movie App'),
+        title: Text('Movie Review App'),
       ),
       body: Column(
         children: [
@@ -39,6 +56,9 @@ class _MyAppState extends State<MyApp> {
           Container(
               padding: EdgeInsets.all(20),
               child: TextField(
+                decoration: InputDecoration(
+                  hintText: 'Enter Movie Name',
+                ),
                 controller: myController,
                 style: TextStyle(
                   fontSize: 40,
@@ -48,14 +68,21 @@ class _MyAppState extends State<MyApp> {
             height: 50,
             width: 300,
             child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                primary: Colors.pink,
+              ),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => Details(
-                            text: myController.text,
-                          )),
-                );
+                if (myController.text.length != 0) {
+                  sendtonext();
+                } else {
+                  Fluttertoast.showToast(
+                    msg: 'Enter the movie name first',
+                    toastLength: Toast.LENGTH_LONG,
+                  );
+                }
               },
               child: Text(
                 'Get Movie Details',

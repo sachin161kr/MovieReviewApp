@@ -74,7 +74,10 @@ class _DetailsState extends State<Details> {
                 width: 450,
                 child: called
                     ? Image.network(posterurl)
-                    : Center(child: CircularProgressIndicator()),
+                    : Center(
+                        child: CircularProgressIndicator(
+                        backgroundColor: Colors.black,
+                      )),
               ),
             ),
             Padding(
@@ -119,6 +122,16 @@ class _DetailsState extends State<Details> {
               child: Center(
                 child: Text(
                   'Genre : ' + genre,
+                  style: TextStyle(fontSize: 22),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(3.0),
+              child: Center(
+                child: Text(
+                  'Cast : ' + actors,
                   style: TextStyle(fontSize: 22),
                   textAlign: TextAlign.center,
                 ),
