@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'details.dart';
 
@@ -46,7 +47,10 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Movie Review App'),
+        title: Text(
+          'Movie Review App',
+          style: GoogleFonts.itim(),
+        ),
       ),
       body: Column(
         children: [
@@ -58,9 +62,10 @@ class _MyAppState extends State<MyApp> {
               child: TextField(
                 decoration: InputDecoration(
                   hintText: 'Enter Movie Name',
+                  hintStyle: GoogleFonts.itim(),
                 ),
                 controller: myController,
-                style: TextStyle(
+                style: GoogleFonts.itim(
                   fontSize: 40,
                 ),
               )),
@@ -69,6 +74,7 @@ class _MyAppState extends State<MyApp> {
             width: 300,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
+                textStyle: GoogleFonts.itim(),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),

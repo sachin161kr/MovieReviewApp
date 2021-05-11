@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -68,7 +69,10 @@ class _DetailsState extends State<Details> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Details'),
+        title: Text(
+          'Details',
+          style: GoogleFonts.itim(),
+        ),
       ),
       body: Container(
         padding: EdgeInsets.all(10),
@@ -76,12 +80,12 @@ class _DetailsState extends State<Details> {
             ? Column(
                 children: [
                   SizedBox(
-                    height: MediaQuery.of(context).size.height / 2 - 70,
+                    height: 250,
                   ),
                   Center(
                       child: Text(
                     'You Spelled It Wrong!',
-                    style: TextStyle(
+                    style: GoogleFonts.itim(
                       fontSize: 40,
                     ),
                     textAlign: TextAlign.center,
@@ -110,7 +114,9 @@ class _DetailsState extends State<Details> {
                     child: Center(
                       child: Text(
                         'Title : ' + title,
-                        style: TextStyle(fontSize: 22),
+                        style: GoogleFonts.itim(
+                          fontSize: 22,
+                        ),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -127,7 +133,9 @@ class _DetailsState extends State<Details> {
                     child: Center(
                       child: Text(
                         'Release Date : ' + released,
-                        style: TextStyle(fontSize: 22),
+                        style: GoogleFonts.itim(
+                          fontSize: 22,
+                        ),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -137,7 +145,9 @@ class _DetailsState extends State<Details> {
                     child: Center(
                       child: Text(
                         'Runtime : ' + runtime,
-                        style: TextStyle(fontSize: 22),
+                        style: GoogleFonts.itim(
+                          fontSize: 22,
+                        ),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -147,7 +157,9 @@ class _DetailsState extends State<Details> {
                     child: Center(
                       child: Text(
                         'Genre : ' + genre,
-                        style: TextStyle(fontSize: 22),
+                        style: GoogleFonts.itim(
+                          fontSize: 22,
+                        ),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -157,7 +169,9 @@ class _DetailsState extends State<Details> {
                     child: Center(
                       child: Text(
                         'Cast : ' + actors,
-                        style: TextStyle(fontSize: 22),
+                        style: GoogleFonts.itim(
+                          fontSize: 22,
+                        ),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -167,7 +181,9 @@ class _DetailsState extends State<Details> {
                     child: Center(
                       child: Text(
                         'Director : ' + director,
-                        style: TextStyle(fontSize: 22),
+                        style: GoogleFonts.itim(
+                          fontSize: 22,
+                        ),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -184,7 +200,9 @@ class _DetailsState extends State<Details> {
                     child: Center(
                       child: Text(
                         'IMDB rating : ' + imdb,
-                        style: TextStyle(fontSize: 22),
+                        style: GoogleFonts.itim(
+                          fontSize: 22,
+                        ),
                         textAlign: TextAlign.center,
                       ),
                     ),
