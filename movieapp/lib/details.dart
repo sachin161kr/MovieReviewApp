@@ -13,6 +13,7 @@ class Details extends StatefulWidget {
 
 class _DetailsState extends State<Details> {
   bool called = false;
+  bool noResponse = false;
   String title = ' ';
   String year = '';
   String released = '';
@@ -22,6 +23,7 @@ class _DetailsState extends State<Details> {
   String director = '';
   String imdb = '';
   String posterurl = '';
+  String reply = '';
 
   getMovie() async {
     http.Response response = await http.get(Uri.parse(
@@ -48,7 +50,12 @@ class _DetailsState extends State<Details> {
       imdb = client['imdbRating'];
       posterurl = client['Poster'];
       called = true;
+      reply = client['Response'];
     });
+
+    if (reply == 'False') {
+      noResponse = true;
+    }
   }
 
   @override
@@ -65,107 +72,125 @@ class _DetailsState extends State<Details> {
       ),
       body: Container(
         padding: EdgeInsets.all(10),
-        child: Column(
-          children: [
-            Center(
-              child: Container(
-                padding: EdgeInsets.all(20),
-                height: 350,
-                width: 450,
-                child: called
-                    ? Image.network(posterurl)
-                    : Center(
-                        child: CircularProgressIndicator(
-                        backgroundColor: Colors.black,
-                      )),
+        child: noResponse
+            ? Column(
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / 2 - 70,
+                  ),
+                  Center(
+                      child: Text(
+                    'You Spelled It Wrong!',
+                    style: TextStyle(
+                      fontSize: 40,
+                    ),
+                    textAlign: TextAlign.center,
+                  )),
+                ],
+              )
+            : Column(
+                children: [
+                  Center(
+                    child: Container(
+                      padding: EdgeInsets.all(20),
+                      height: 350,
+                      width: 450,
+                      child: called
+                          ? Image.network(
+                              posterurl,
+                            )
+                          : Center(
+                              child: CircularProgressIndicator(
+                              backgroundColor: Colors.black,
+                            )),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(3.0),
+                    child: Center(
+                      child: Text(
+                        'Title : ' + title,
+                        style: TextStyle(fontSize: 22),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(3.0),
+                  //   child: Text(
+                  //     year,
+                  //     style: TextStyle(fontSize: 22),
+                  //   ),
+                  // ),
+                  Padding(
+                    padding: const EdgeInsets.all(3.0),
+                    child: Center(
+                      child: Text(
+                        'Release Date : ' + released,
+                        style: TextStyle(fontSize: 22),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(3.0),
+                    child: Center(
+                      child: Text(
+                        'Runtime : ' + runtime,
+                        style: TextStyle(fontSize: 22),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(3.0),
+                    child: Center(
+                      child: Text(
+                        'Genre : ' + genre,
+                        style: TextStyle(fontSize: 22),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(3.0),
+                    child: Center(
+                      child: Text(
+                        'Cast : ' + actors,
+                        style: TextStyle(fontSize: 22),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(3.0),
+                    child: Center(
+                      child: Text(
+                        'Director : ' + director,
+                        style: TextStyle(fontSize: 22),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(3.0),
+                  //   child: Text(
+                  //     actors,
+                  //     style: TextStyle(fontSize: 22),
+                  //   ),
+                  // ),
+                  Padding(
+                    padding: const EdgeInsets.all(3.0),
+                    child: Center(
+                      child: Text(
+                        'IMDB rating : ' + imdb,
+                        style: TextStyle(fontSize: 22),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(3.0),
-              child: Center(
-                child: Text(
-                  'Title : ' + title,
-                  style: TextStyle(fontSize: 22),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
-            // Padding(
-            //   padding: const EdgeInsets.all(3.0),
-            //   child: Text(
-            //     year,
-            //     style: TextStyle(fontSize: 22),
-            //   ),
-            // ),
-            Padding(
-              padding: const EdgeInsets.all(3.0),
-              child: Center(
-                child: Text(
-                  'Release Date : ' + released,
-                  style: TextStyle(fontSize: 22),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(3.0),
-              child: Center(
-                child: Text(
-                  'Runtime : ' + runtime,
-                  style: TextStyle(fontSize: 22),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(3.0),
-              child: Center(
-                child: Text(
-                  'Genre : ' + genre,
-                  style: TextStyle(fontSize: 22),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(3.0),
-              child: Center(
-                child: Text(
-                  'Cast : ' + actors,
-                  style: TextStyle(fontSize: 22),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(3.0),
-              child: Center(
-                child: Text(
-                  'Director : ' + director,
-                  style: TextStyle(fontSize: 22),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
-            // Padding(
-            //   padding: const EdgeInsets.all(3.0),
-            //   child: Text(
-            //     actors,
-            //     style: TextStyle(fontSize: 22),
-            //   ),
-            // ),
-            Padding(
-              padding: const EdgeInsets.all(3.0),
-              child: Center(
-                child: Text(
-                  'IMDB rating : ' + imdb,
-                  style: TextStyle(fontSize: 22),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }
